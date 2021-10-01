@@ -10,8 +10,9 @@
      */
     $route = new Route();
     $route->controllers(array(
-        "/"      => "MainController",
-        "/users" => "UsersController",
+        "/"             => "MainController",
+        "/users"        => "UsersController",
+        "/products"     => "ProductsController",
         "/salesinvoice" => "SalesInvoiceController",
     ));
 ?>
