@@ -7,19 +7,16 @@
      */
     use View\Views;
     use App\model\Usr;
+    use \libs\ORM\EtORM;
     class UsersController {
 
-        public function index() {
-            
+        public function index() {            
         }
-
-        public function search() {
-            
+        public function search() {            
         }
-        public function insert() {
-            
+        public function insert() {            
         }
-
+        
         /**
          * Example:
          * http://localhost/system-orm-mipss-php/users/test
@@ -124,7 +121,7 @@
          */
         public function test_searching() {
             $users = Usr::find(12);
-            echo "<b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
+            echo "<b>Reference:</b> ". $users->Rfrnc . " <b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
         }
 
         /**
@@ -134,7 +131,7 @@
         public function test_searching_params() {
             $Rfrnc = $_REQUEST['Rfrnc'];;
             $users = Usr::find($Rfrnc);
-            echo "<b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
+            echo "<b>Reference:</b> ". $users->Rfrnc . " <b>Username:</b> ". $users->Usrnm . " <b>Password:</b> " . $users->Psswrd . "<br />";
         }
 
         /**
@@ -180,6 +177,46 @@
             $users->Usrnm = "Robertson";
             $users->save();
             echo "<b>Update successful</b>";
+        }
+
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test_delete
+         */
+        public function test_delete() {
+            $user = Usr::find(4);
+            if(count($user)) {
+                if($user->delete()) {
+                    echo "Successfully removed";
+                } else {
+                    echo "Could not delete";
+                }                
+            } else {
+                echo "No records";
+            }
+        }
+
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test_register
+         */
+        public function test_register() {
+            $et = new EtORM();
+            $et->procedure("0_Add", array("Argimiro", 1234, 1, 1, 1, 0, 0, "0001-01-01", "00:00:00"));
+            echo "<b>Save</b><br />";            
+        }
+
+        /**
+         * Example:
+         * http://localhost/system-orm-mipss-php/users/test_tolist
+         */
+        public function test_tolist() {
+            $et = new EtORM();
+            $users = $et->procedure("0_Usrs_ToList");
+            echo "<b>To List</b><br />";
+            foreach($users as $user) {
+                echo $user[1] . "<br />";
+            }
         }
     }
 ?>

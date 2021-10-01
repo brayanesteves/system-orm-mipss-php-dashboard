@@ -25,6 +25,10 @@
             self::$cnnctn = \Connection::connect();
         }
 
+        public static function getDisconnect() {
+            self::$cnnctn = null;
+        }
+
         public static function getTable() {
             echo static::$table;
         }
@@ -89,7 +93,7 @@
              */
             if($response->execute()) {
                 $this->Rfrnc   = self::$cnnctn->lastInsertId();
-                self::$cnnctn = null;
+                self::getDisconnect();
                 return true;
             } else {
                 return false;
@@ -110,9 +114,14 @@
             $response->execute();
             // $rows = $response->fetch();
             // echo count($rows);
+            /**
+             * ----
+             */
+            $object = [];
             foreach($response as $row) {
                 $object[] = new $class($row);
             }
+            self::getDisconnect();
             return $object;
         }
         
@@ -122,7 +131,11 @@
         public static function find($Rfrnc) {
             // echo get_called_class();
             $response = self::where("Rfrnc", "", $Rfrnc);
-            return $response[0];
+            if(count($response)) {
+                return $response[0];
+            } else {
+                return [];
+            }            
         }
 
         public static function all() {
@@ -137,6 +150,68 @@
             // echo count($rows);
             foreach($response as $row) {
                 $object[] = new $class($row);
+            }
+            return $object;
+        }
+
+        public function delete($value = null, $column = null) {
+            $query = "DELETE FROM " . static::$table . " WHERE " . (is_null($column) ? "Rfrnc" : $column) . " = :p";
+            //echo $query;
+            self::getConnect();
+            /**
+             * Prepare connection
+             */
+            $response = self::$cnnctn->prepare($query);
+            /**
+             * Add the parameters
+             */
+            if(!is_null($value)) {
+                $response->bindParam(":p", $value);
+            } else {   
+                $newRes = (is_null($this->Rfrnc) ? null : $this->Rfrnc);             
+                $response->bindParam(":p", $newRes);
+            }
+            /**
+             * Execute
+             */
+            if($response->execute()) {
+                self::getDisconnect();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        /**
+         * 
+         */
+        public function procedure($procedure, $params = null) { 
+            $query = "CALL " . $procedure;
+            self::getConnect();
+            if(!is_null($params)) {
+                $_params = "";
+                for($i = 0; $i < count($params); $i++) { 
+                    $_params .= ":" . $i . ",";
+                }
+                $_params  = trim($_params, ",");
+                $_params .= ")";
+                $query   .= "(" . $_params;
+            } else {
+                $query   .= "()";
+            }
+            // echo $query;
+            /**
+             * Adding Parameters to '$query'
+             */
+            $response = self::$cnnctn->prepare($query);
+            for($i = 0; $i < count($params); $i++) {
+                $response->bindParam(":" . $i, $params[$i]);                
+            }
+            $response->execute();
+
+            $object = [];
+            foreach($response as $row) {
+                $object[] = $row;                
             }
             return $object;
         }
