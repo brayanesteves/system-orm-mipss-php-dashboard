@@ -23,8 +23,9 @@
          * http://localhost/system-orm-mipss-php-dashboard/login/error
          */
         public function error() {
-            echo $_SESSION["status"] . "<br />";
-            echo $_SESSION["message"];
+            if(Session::has("status")) {
+                echo Session::get("status");
+            }
         }
 
         /**
@@ -78,6 +79,15 @@
             } else {
                 echo "¡ERROR!";
             }     
+        }
+
+        /**
+         * URL
+         * http://localhost/system-orm-mipss-php-dashboard/login/test_error
+         */
+        public function test_error() {
+            echo $_SESSION["status"] . "<br />";
+            echo $_SESSION["message"];
         }
     }
 ?>

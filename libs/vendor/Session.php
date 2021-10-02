@@ -27,7 +27,8 @@
         public static function get($variable_session) {
             try {
                 $message = $_SESSION[$variable_session];
-                session_unset($_SESSION[$variable]);
+                //session_unset($_SESSION[$variable_session]);
+                unset($_SESSION[$variable_session]);
                 return $message;
             } catch(Exception $exception) {
                 
