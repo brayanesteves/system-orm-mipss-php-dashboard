@@ -84,4 +84,11 @@
             return json_encode($data->getColumns());
         }
     }
+
+    /**
+     * Allows you to encrypt a 'string'
+     */
+    function encrypt($string) {
+        return crypt($string, '$2a$07$usesomesillystringforsalt$');
+    }
 ?>

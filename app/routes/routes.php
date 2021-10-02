@@ -16,5 +16,6 @@
         "/user"         => "UserController",
         "/products"     => "ProductsController",
         "/salesinvoice" => "SalesInvoiceController",
+        "/admin"        => "AdminController",
     ));
 ?>

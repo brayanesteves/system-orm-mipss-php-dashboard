@@ -22,10 +22,26 @@
                  * salt: Blowfish => $2a$07$usesomesillystringforsalt$
                  */
                 $username = input("username");
-                $password = crypt(input("password"), '$2a$07$usesomesillystringforsalt$');
+                $password = encrypt(input("password"));
                 $data     = $objectORM->procedure("0_Login", array($username, $password));
                 //var_dump($data);
-                echo json_encode($data);
+                //echo json_encode($data);
+                if(count($data) > 0) {
+                    $_SESSION['Rfrnc']        = $data[0]['Rfrnc'];
+                    $_SESSION['Usrnm']        = $data[0]['Usrnm'];
+                    $_SESSION['Psswrd']       = $data[0]['Psswrd'];
+                    $_SESSION['Rfrnc_Prsn']   = $data[0]['Rfrnc_Prsn'];
+                    $_SESSION['UsrTyp_Rfrnc'] = $data[0]['UsrTyp_Rfrnc'];
+                    $_SESSION['Cndtn']        = $data[0]['Cndtn'];
+                    $_SESSION['Rmvd']         = $data[0]['Rmvd'];
+                    $_SESSION['Lckd']         = $data[0]['Lckd'];
+                    $_SESSION['DtAdmssn']     = $data[0]['DtAdmssn'];
+                    $_SESSION['ChckTm']       = $data[0]['ChckTm'];                    
+                   
+                    redirect("/admin");
+                } else {
+                    redirect("/login");
+                }
             } else {
                 echo "¡ERROR!";
             }     
