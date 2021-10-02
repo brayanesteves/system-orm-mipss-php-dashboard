@@ -12,5 +12,5 @@
     // User
     define("USER", "root");
     // Password
-    define("PASSWORD", "");
+    define("PASSWORD", "12345678");
 ?>

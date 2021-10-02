@@ -10,8 +10,10 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">MIPSS</h1>
+            <div class="col-md-12 text-center">
+                <h1 class="">MIPSS</h1>
+                <hr>
+                <a href="<?php url("login"); ?>" class="btn btn-primary">Login <i class="fa fa-arrow-right"></i></a>
             </div>
         </div>
     </div>
