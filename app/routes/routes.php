@@ -13,6 +13,7 @@
         "/"             => "MainController",
         "/login"        => "AuthController",
         "/users"        => "UsersController",
+        "/user"         => "UserController",
         "/products"     => "ProductsController",
         "/salesinvoice" => "SalesInvoiceController",
     ));
