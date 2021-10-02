@@ -10,7 +10,7 @@
     use \libs\ORM\EtORM;
     class AuthController {
         public function index() {
-            return Views::create("index");
+            return Views::create("auth.login");
         }
     }
 ?>
