@@ -65,7 +65,23 @@
      * Function that allows us to recover an 'input'
      */
     function input($name) {
-        $response = new \libs\help\Request();
+        $response = new \Library\help\Request();
         return $response->input($name);
+    }
+
+    /**
+     * Function that allows us to return 'JSON' by means of an 'array'
+     */
+    function json_response($data) {
+        header('Content-Type: application/json');
+        if(is_array($data)) {
+            $array = array();
+            foreach($data as $d) {
+                array_push($array, $d->getColumns());
+            }
+            return json_encode($array);
+        } else {
+            return json_encode($data->getColumns());
+        }
     }
 ?>

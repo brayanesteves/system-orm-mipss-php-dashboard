@@ -11,9 +11,16 @@
     class UserController {
 
         public function index() { 
+   
+        }
+        
+        public function insert() {            
+        }
+
+        public function test_add() {   
             $user               = new Usr();
-            $user->Usrnm        = "Brayan_Test";
-            $user->Psswrd       = password_hash(1234, PASSWORD_DEFAULT);
+            $user->Usrnm        = "Brayan_Test3";
+            $user->Psswrd       = crypt("1234", '$2a$07$usesomesillystringforsalt$');
             $user->Rfrnc_Prsn   = 1;
             $user->UsrTyp_Rfrnc = 1;
             $user->Cndtn        = 1;
@@ -26,10 +33,7 @@
 
             $user->getTable();            
             $user->save();
-            echo $user->Rfrnc;         
-        }
-        
-        public function insert() {            
+            echo $user->Rfrnc;              
         }
      
     }

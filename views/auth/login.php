@@ -33,7 +33,7 @@
                                 <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="Enter username..." name="email" type="text" required autocomplete="off" autofocus>
+                                        <input class="form-control" placeholder="Enter username..." name="username" type="text" required autocomplete="off" autofocus>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Password" name="password" type="password" required>

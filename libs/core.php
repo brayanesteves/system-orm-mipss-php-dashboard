@@ -6,12 +6,14 @@
      * Time: 01:12 PM
      */
     require_once("help/helps.php");
+    
     define(  "APP_ROUTE", ROUTE_BASE .    "app/");
     define("VIEWS_ROUTE", ROUTE_BASE .  "views/");
     define(    "LIBRARY", ROUTE_BASE .   "libs/");
     define(     "ROUTES",  APP_ROUTE . "routes/");
     define(     "MODELS",  APP_ROUTE .  "model/");
-
+    require_once("help/class.inputfilter.php");
+    
     /**
      * Configuration
      */
