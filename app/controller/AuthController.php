@@ -45,6 +45,27 @@
                 //var_dump($data);
                 //echo json_encode($data);
                 if(count($data) > 0) {
+
+                    /**
+                     * 'Object' to '$_SESSION[]'
+                     */
+                    $user = new Usr();
+                    $user->Rfrnc        = $data[0]['Rfrnc'];
+                    $user->Usrnm        = $data[0]['Usrnm'];
+                    $user->Psswrd       = $data[0]['Psswrd'];
+                    $user->Rfrnc_Prsn   = $data[0]['Rfrnc_Prsn'];
+                    $user->UsrTyp_Rfrnc = $data[0]['UsrTyp_Rfrnc'];
+                    $user->Cndtn        = $data[0]['Cndtn'];
+                    $user->Rmvd         = $data[0]['Rmvd'];
+                    $user->Lckd         = $data[0]['Lckd'];
+                    $user->DtAdmssn     = $data[0]['DtAdmssn'];
+                    $user->ChckTm       = $data[0]['ChckTm'];                    
+                    
+                    $_SESSION['user'] = $user;
+
+                    /**
+                     * $_SESSION[]
+                     */
                     $_SESSION['Rfrnc']        = $data[0]['Rfrnc'];
                     $_SESSION['Usrnm']        = $data[0]['Usrnm'];
                     $_SESSION['Psswrd']       = $data[0]['Psswrd'];
