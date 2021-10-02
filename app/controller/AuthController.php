@@ -56,9 +56,9 @@
                     $_SESSION['DtAdmssn']     = $data[0]['DtAdmssn'];
                     $_SESSION['ChckTm']       = $data[0]['ChckTm'];                    
                    
-                    _redirect("/admin");
+                    redirecting()->to("/admin");
                 } else {
-                    redirecting()->to("/login")->withMessage(array("status" => "false", "message" => "Incorrect username/password"));                    
+                    redirecting()->to("/login")->withMessage(array("status" => "false", "message" => "Incorrect username/password"));
                 }
             } else {
                 echo "¡ERROR!";
