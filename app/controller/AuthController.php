@@ -9,10 +9,28 @@
     use App\model\Usr;
     use \libs\ORM\EtORM;
     class AuthController {
+        /**
+         * URL:
+         * http://localhost/system-orm-mipss-php-dashboard/login
+         */
         public function index() {
-            return Views::create("auth.login");
+            return redirecting()->to("/login/error")->withMessage(array("status" => true, "message", "Access"));
+            //return Views::create("auth.login");
         }
 
+        /**
+         * URL
+         * http://localhost/system-orm-mipss-php-dashboard/login/error
+         */
+        public function error() {
+            echo $_SESSION["status"] . "<br />";
+            echo $_SESSION["message"];
+        }
+
+        /**
+         * URL:
+         * http://localhost/system-orm-mipss-php-dashboard/login/signin
+         */
         public function signin() {    
             if(validate_csrf()) {                
                 $objectORM = new EtORM();
