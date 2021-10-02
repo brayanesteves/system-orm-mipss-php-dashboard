@@ -12,5 +12,13 @@
         public function index() {
             return Views::create("auth.login");
         }
+
+        public function signin() {    
+            if(validate_csrf()) {
+                echo "OK";
+            } else {
+                echo "¡ERROR!";
+            }     
+        }
     }
 ?>

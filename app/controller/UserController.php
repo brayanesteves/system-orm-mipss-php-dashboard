@@ -28,21 +28,9 @@
             $user->save();
             echo $user->Rfrnc;         
         }
-        public function search() {            
-        }
+        
         public function insert() {            
         }
-        
-
-        /**
-         * Example:
-         * http://localhost/system-orm-mipss-php/users/test_register
-         */
-        public function test_register() {
-            $et = new EtORM();
-            $et->procedure("0_Add", array("Argimiro", 1234, 1, 1, 1, 0, 0, "0001-01-01", "00:00:00"));
-            echo "<b>Save</b><br />";            
-        }
- 
+     
     }
 ?>

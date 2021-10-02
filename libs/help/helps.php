@@ -49,4 +49,23 @@
         $_SESSION["csrf_token"] = $csrf_token;
         echo $csrf_token;
     }
+
+    /**
+     * Validate CSRF token via sessions
+     */
+    function validate_csrf() {
+        if($_REQUEST['_token'] == $_SESSION['csrf_token']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Function that allows us to recover an 'input'
+     */
+    function input($name) {
+        $response = new \libs\help\Request();
+        return $response->input($name);
+    }
 ?>

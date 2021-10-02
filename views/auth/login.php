@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Startmin - Bootstrap Admin Theme</title>
+        <title>MIPSS | Login</title>
         <link rel="stylesheet" href="<?php assets("libs/bootstrap/version/3.3.2/css/bootstrap.min.css"); ?>">
         <link rel="stylesheet" href="<?php assets("libs/metismenu/version/1.1.3/css/metisMenu.min.css"); ?>">
         <link rel="stylesheet" href="<?php assets("libs/startmin/version/0.0.1/css/startmin.css"); ?>">
@@ -29,10 +29,11 @@
                             <h3 class="panel-title">Please Sign In</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form">
+                            <form role="form" action="<?php url("login/signin"); ?>" method="POST">
+                                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>" />
                                 <fieldset>
                                     <div class="form-group">
-                                        <input class="form-control" placeholder="E-mail" name="email" type="email" required autocomplete="off" autofocus>
+                                        <input class="form-control" placeholder="Enter username..." name="email" type="text" required autocomplete="off" autofocus>
                                     </div>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Password" name="password" type="password" required>
@@ -43,7 +44,7 @@
                                         </label>
                                     </div>
                                     <!-- Change this to a button or input when using this as a form -->
-                                    <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                    <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                                 </fieldset>
                             </form>
                         </div>
