@@ -47,6 +47,13 @@
                                     <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
                                 </fieldset>
                             </form>
+                            <br />
+                            <?php if(Session::has("status") && Session::has("message")){ ?>
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Title:</strong> <?php echo Session::get("message"); ?>
+                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

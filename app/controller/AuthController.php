@@ -13,9 +13,8 @@
          * URL:
          * http://localhost/system-orm-mipss-php-dashboard/login
          */
-        public function index() {
-            return redirecting()->to("/login/error")->withMessage(array("status" => true, "message", "Access"));
-            //return Views::create("auth.login");
+        public function index() {            
+            return Views::create("auth.login");
         }
 
         /**
@@ -57,9 +56,9 @@
                     $_SESSION['DtAdmssn']     = $data[0]['DtAdmssn'];
                     $_SESSION['ChckTm']       = $data[0]['ChckTm'];                    
                    
-                    redirect("/admin");
+                    _redirect("/admin");
                 } else {
-                    redirect("/login");
+                    redirecting()->to("/login")->withMessage(array("status" => "false", "message" => "Incorrect username/password"));                    
                 }
             } else {
                 echo "¡ERROR!";
