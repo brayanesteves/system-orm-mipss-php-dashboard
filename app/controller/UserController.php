@@ -14,6 +14,43 @@
    
         }
         
+        public function new() {
+            return Views::create("admin.user.add");
+        }
+        
+        public function add() {
+            try {
+                $user               = new Usr();
+                $user->Usrnm        = input("username");
+                $user->Psswrd       = crypt(input("password"), '$2a$07$usesomesillystringforsalt$');
+                $user->Rfrnc_Prsn   = input("Rfrnc_Prsn");
+                $user->UsrTyp_Rfrnc = input("UsrTyp_Rfrnc");
+                if(isset($_POST["Cndtn"])) {
+                    $user->Cndtn        = 1;
+                } else {
+                    $user->Cndtn        = 0;
+                }
+                if(isset($_POST["Rmvd"]) == "on") {
+                    $user->Rmvd        = 1;
+                } else {
+                    $user->Rmvd        = 0;
+                }
+                if(isset($_POST["Lckd"]) == "on") {
+                    $user->Lckd        = 1;
+                } else {
+                    $user->Lckd        = 0;
+                } 
+                $user->DtAdmssn     = Date("Y-m-d");
+                $user->ChckTm       = Date("H:i:s"); 
+                $user->save(); 
+                
+                redirecting()->to("/users");
+
+            } catch (Exception $e) {
+                echo $e->getMessage();
+            }
+        }
+
         public function insert() {            
         }
 

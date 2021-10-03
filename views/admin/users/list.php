@@ -11,7 +11,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">User list</h1>
+                            <h1 class="page-header">Users list | <a href="<?php url("user/new"); ?>" class="btn btn-primary"><i class="fa fa-plus"></i> Add user</a></h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
