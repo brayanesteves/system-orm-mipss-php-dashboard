@@ -16,6 +16,14 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- CONTENT -->
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Users</h3>
+                        </div>
+                        <div class="panel-body">
+                            <a href="<?php url("users"); ?>" class="btn btn-default btn-large"><i class="fa fa-users"></i>User list</a>
+                        </div>
+                    </div>
                     <!-- .CONTENT -->
                 </div>
                 <!-- /.container-fluid -->

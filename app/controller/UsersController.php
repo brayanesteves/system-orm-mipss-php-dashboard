@@ -10,7 +10,9 @@
     use \libs\ORM\EtORM;
     class UsersController {
 
-        public function index() {            
+        public function index() { 
+            $users = Usr::all();
+            return Views::create("admin.users.list", array("users" => $users));        
         }
         public function search() {            
         }
