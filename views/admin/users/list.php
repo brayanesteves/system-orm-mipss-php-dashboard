@@ -23,12 +23,10 @@
                                 <th>Username</th>
                                 <th>Password</th>
                                 <th>Person</th>
-                                <th>Type username</th>
-                                <th>Condition</th>
-                                <th>Removed</th>
-                                <th>Locked</th>
+                                <th>Type username</th>                                
                                 <th>Date admission</th>
                                 <th>Check time</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,27 +43,30 @@
 
                                 <td><?php echo $user->Rfrnc_Prsn; ?></td>
                                 <td><?php echo $user->UsrTyp_Rfrnc; ?></td>
-
-                                <?php if($user->Cndtn == 1): ?>
-                                <td><b class="text-success">Activated</b></td>
-                                <?php else: ?>
-                                <td>No activated</td>
-                                <?php endif; ?>
-                                
-                                <?php if($user->Rmvd == 1): ?>
-                                <td>Removed</td>
-                                <?php else: ?>
-                                <td><b class="text-success">No removed</b></td>
-                                <?php endif; ?>
-                                
-                                <?php if($user->Lckd == 1): ?>
-                                <td>Locked</td>
-                                <?php else: ?>
-                                <td><b class="text-success">No locked</b></td>
-                                <?php endif; ?>                                
                                 
                                 <td><?php echo $user->DtAdmssn; ?></td>
                                 <td><?php echo $user->ChckTm; ?></td>
+                                <td>
+                                    <a href="<?php url("user/edit/" . $user->Rfrnc); ?>" class="btn btn-primary btn-sm">Edit</a>
+                                    <?php if($user->Cndtn == 1): ?>
+                                    <td><a href="<?php url("user/desactivate/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Desactivate</a></td>
+                                    <?php else: ?>
+                                    <td><a href="<?php url("user/activate/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Activate</a></td>
+                                    <?php endif; ?>
+                                    
+                                    <?php if($user->Rmvd == 1): ?>
+                                    <td><a href="<?php url("user/recover/" . $user->Rfrnc); ?>" class="btn btn-success btn-sm">Recover</a></td>
+                                    <?php else: ?>
+                                    <td><a href="<?php url("user/remove/" . $user->Rfrnc); ?>" class="btn btn-danger btn-sm">Remove</a></td>
+                                    <?php endif; ?>
+                                    
+                                    <?php if($user->Lckd == 1): ?>
+                                    <td><a href="<?php url("user/unlock/" . $user->Rfrnc); ?>" class="btn btn-success btn-sm">Unlock</a></td>
+                                    <?php else: ?>
+                                    <td><a href="<?php url("user/locked/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Locked</a></td>
+                                    <?php endif; ?>   
+                                    
+                                </td>
                             </tr>
                             <?php $count++; endforeach; ?>
                         </tbody>
@@ -78,7 +79,7 @@
         </div>
         <!-- /#wrapper -->
         <?php include(VIEWS_ROUTE . "admininclude/footer.php"); ?>
-        <?php else: redirect('/login'); ?>
+        <?php else: _redirect('/login'); ?>
         <?php endif; ?>
 
     </body>

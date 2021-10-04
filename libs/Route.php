@@ -8,7 +8,9 @@
      * Read routes, config @file 'app/routes/'
      */
     class Route {
-        // Method that allows us to enter drivers with their respective routes
+        /**
+         * Method that allows us to enter drivers with their respective routes
+         */        
         private $_controllers = array();
         public function controllers($controller) {
             $this->_controllers = $controller; 
@@ -72,15 +74,18 @@
                      */
                     $this->getController("index", $Storecontroller);
                 }
-            } else {
+            } else {                
                 /**
                  * Controllers and Methods
                  */
+                // echo "<b>URL:</b> ".$url."<br><hr>";
                 /**
                  * The route status will serve to validate if the route of the controller and the method is correct
                  */
-                $status = false;
-                foreach($this->_controllers as $route => $controller) {
+                $status = false;           
+                foreach($this->_controllers as $route => $controller_) {
+                    
+                    // echo "<br><b>Route:</b> ".$route."<br>";
                     /**
                      * ($paths) the array of routes that we put in the browser
                      * $paths[0]
@@ -91,14 +96,43 @@
                      * "/users" => "userController"
                      *   $route       $controller
                      */
-                    if(trim($route, "/") == $paths[0]) {
-                        $status = true;
-                        $_controller = $controller;
-                        $method = "";
-                        if(count($paths) > 1) {
-                            $method = $paths[1];
+                    if(trim($route, "/")  != "") {
+                        $location = strpos($url, trim($route, "/"));
+
+                        if($location === false) {
+                            //  echo "<small style='color:red;'>Not found</small><br>";
+                        } else {
+
+                            // echo "<small style='color:green;'>Found</small><br>";
+                            /**
+                             * 'Array' where the web parameters will be saved
+                             */
+                            $arrayParams   = array();
+                            /**
+                             * Status route
+                             */
+                            $status        = true;
+                            $_controller   = $controller_;
+                            $method        = "";
+                            $quantityRoute = count(explode("/", trim($route, "/")));
+                            $quantity      = count($paths);
+                            if ($quantity > $quantityRoute) {
+                                $method = $paths[$quantityRoute];
+                                for ($i = 0; $i < count($paths); $i++) {
+                                    if ($i > $quantityRoute) {
+                                        $arrayParams[] = $paths[$i];
+                                    }
+                                }
+                            }
+                            // echo "<b>Params: </b>".json_encode($arrayParams);
+                            // echo "<br><b>Quantity route</b>: ".count(explode("/",trim($route,"/")))."<br>";
+                            // echo "<br><b>Quantity URL</b>: ".count($paths)."<br>";
+                            /*if(count($paths) > 1){
+                                $method = $paths[1];
+                            }*/
+                            $this->getController($method, $_controller, $arrayParams);
                         }
-                        $this->getController($method, $_controller);
+
                     }
                 }
 
@@ -114,7 +148,7 @@
          * @param {} $method
          * @param {} $controller
          */
-        public function getController($method, $controller) {
+        public function getController($method, $controller, $params = null) {
             /**
              * Method
              */
@@ -122,7 +156,7 @@
             /**
              * We check if 'index' is or not the method or function of the controller
              */
-            if($method == "index" || $method == "") {
+            if($method == "index" || $method == "" || is_null($method)) {
                 $methodController = "index";
             } else {
                 $methodController = $method;
@@ -155,7 +189,16 @@
                      * We make a call to the method of this class
                      * class->index();
                      */
-                    $ClassTemp->$methodController();
+                    // $ClassTemp->$methodController();                    
+                    if ($methodController == "index") {
+                        if (count($params) == 0) {
+                            $ClassTemp->$methodController();
+                        } else {
+                            die("Error params");
+                        }
+                    } else {
+                        call_user_func_array(array($ClassTemp, $methodController), $params);
+                    }
                 } else {
                     die("The method does not exist");
                 }

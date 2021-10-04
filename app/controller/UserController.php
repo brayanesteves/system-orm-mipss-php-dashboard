@@ -21,14 +21,19 @@
         public function add() {
             try {
                 $user               = new Usr();
+                if(input("username")) {
+                    $user           = Usr::find(input("reference"));
+                }
                 $user->Usrnm        = input("username");
-                $user->Psswrd       = crypt(input("password"), '$2a$07$usesomesillystringforsalt$');
+                if(input("password")) {
+                    $user->Psswrd       = crypt(input("password"), '$2a$07$usesomesillystringforsalt$');
+                }
                 $user->Rfrnc_Prsn   = input("Rfrnc_Prsn");
                 $user->UsrTyp_Rfrnc = input("UsrTyp_Rfrnc");
                 if(isset($_POST["Cndtn"])) {
-                    $user->Cndtn        = 1;
+                    $user->Cndtn    = 1;
                 } else {
-                    $user->Cndtn        = 0;
+                    $user->Cndtn    = 0;
                 }
                 if(isset($_POST["Rmvd"]) == "on") {
                     $user->Rmvd        = 1;
@@ -50,6 +55,21 @@
                 echo $e->getMessage();
             }
         }
+
+        /**
+         * Method to edit record
+         * Example: 
+         * http://localhost/system-orm-mipss-php-dashboard/user/edit/{$Reference}
+         * @param {int} $Reference
+         * @return redirect
+         */
+        public function edit($Reference) {
+            $user = Usr::find($Reference);
+            if(count($user)) {
+                return Views::create("admin.user.add", array("user" => $user));
+            }
+            return redirecting()->to("user");
+         }
 
         public function insert() {            
         }

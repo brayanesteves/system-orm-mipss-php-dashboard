@@ -25,7 +25,7 @@
      */
     function _redirect($route) {
         $urlmain = str_replace("index.php", "", $_SERVER['PHP_SELF']);
-        header("location:/" . trim($urlmain, "/") . "" . $route);
+        return $urlmain;
     }
 
     /**
@@ -45,7 +45,7 @@
         if(isset($_SESSION["token"])) {
             unset($_SESSION["token"]);
         }
-        $csrf_token = md5(uniqid(mt_rand(), true));
+        $csrf_token             = md5(uniqid(mt_rand(), true));
         $_SESSION["csrf_token"] = $csrf_token;
         echo $csrf_token;
     }
