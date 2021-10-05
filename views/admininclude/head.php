@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="<?php assets("libs/bootstrap/version/3.3.2/css/bootstrap.min.css"); ?>">
     <link rel="stylesheet" href="<?php assets("libs/metismenu/version/1.1.3/css/metisMenu.min.css"); ?>">
     <link rel="stylesheet" href="<?php assets("libs/startmin/version/0.0.1/css/startmin.css"); ?>">
-    <link rel="stylesheet" href="<?php assets("libs/fontawesome/version/5.15.4/css/all.min.css"); ?>"> 
+    <link rel="stylesheet" href="<?php assets("libs/startmin/version/0.0.1/css/startmin.css"); ?>">
+    <link rel="stylesheet" href="<?php assets("libs/jquery/plugin/jquery-confirm/version/3.3.4/dist/jquery-confirm.min.css"); ?>"> 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

@@ -139,7 +139,7 @@
         }
 
         public static function all() {
-            $query = "SELECT * FROM " . static::$table;
+            $query = "SELECT * FROM " . static::$table . " WHERE `Rmvd` = 0;";
             // echo $query;
             $class = get_called_class();
             self::getConnect();
@@ -156,6 +156,34 @@
 
         public function delete($value = null, $column = null) {
             $query = "DELETE FROM " . static::$table . " WHERE " . (is_null($column) ? "Rfrnc" : $column) . " = :p";
+            //echo $query;
+            self::getConnect();
+            /**
+             * Prepare connection
+             */
+            $response = self::$cnnctn->prepare($query);
+            /**
+             * Add the parameters
+             */
+            if(!is_null($value)) {
+                $response->bindParam(":p", $value);
+            } else {   
+                $newRes = (is_null($this->Rfrnc) ? null : $this->Rfrnc);             
+                $response->bindParam(":p", $newRes);
+            }
+            /**
+             * Execute
+             */
+            if($response->execute()) {
+                self::getDisconnect();
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public function remove($value = null, $column = null) {
+            $query = "UPDATE " . static::$table . " SET Rmvd = 1 WHERE " . (is_null($column) ? "Rfrnc" : $column) . " = :p";
             //echo $query;
             self::getConnect();
             /**

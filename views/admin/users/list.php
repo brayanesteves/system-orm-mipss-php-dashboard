@@ -49,21 +49,21 @@
                                 <td>
                                     <a href="<?php url("user/edit/" . $user->Rfrnc); ?>" class="btn btn-primary btn-sm">Edit</a>
                                     <?php if($user->Cndtn == 1): ?>
-                                    <td><a href="<?php url("user/desactivate/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Desactivate</a></td>
+                                    <button href="<?php url("user/desactivate/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Desactivate</button>
                                     <?php else: ?>
-                                    <td><a href="<?php url("user/activate/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Activate</a></td>
+                                    <button href="<?php url("user/activate/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Activate</button>
                                     <?php endif; ?>
                                     
                                     <?php if($user->Rmvd == 1): ?>
-                                    <td><a href="<?php url("user/recover/" . $user->Rfrnc); ?>" class="btn btn-success btn-sm">Recover</a></td>
+                                    <button onclick="<?php url("user/recover/" . $user->Rfrnc); ?>" class="btn btn-success btn-sm">Recover</button>
                                     <?php else: ?>
-                                    <td><a href="<?php url("user/remove/" . $user->Rfrnc); ?>" class="btn btn-danger btn-sm">Remove</a></td>
+                                    <button onclick="remove('<?php url("user/remove/" . $user->Rfrnc); ?>')" class="btn btn-danger btn-sm">Remove</button>
                                     <?php endif; ?>
                                     
                                     <?php if($user->Lckd == 1): ?>
-                                    <td><a href="<?php url("user/unlock/" . $user->Rfrnc); ?>" class="btn btn-success btn-sm">Unlock</a></td>
+                                    <button href="<?php url("user/unlock/" . $user->Rfrnc); ?>" class="btn btn-success btn-sm">Unlock</button>
                                     <?php else: ?>
-                                    <td><a href="<?php url("user/locked/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Locked</a></td>
+                                    <button href="<?php url("user/locked/" . $user->Rfrnc); ?>" class="btn btn-warning btn-sm">Locked</button>
                                     <?php endif; ?>   
                                     
                                 </td>

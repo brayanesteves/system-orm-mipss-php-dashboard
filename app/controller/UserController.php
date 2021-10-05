@@ -69,7 +69,26 @@
                 return Views::create("admin.user.add", array("user" => $user));
             }
             return redirecting()->to("user");
-         }
+        }
+
+        public function delete($Reference) {
+            $user = Usr::find($Reference);
+            if(count($user)) {
+                $user->delete();
+                return redirecting()->to("users");
+            }
+            return redirecting()->to("users");
+        }
+
+        public function remove($Reference) {
+            $user = Usr::find($Reference);
+            var_dump($user);
+            if(count($user)) {
+                $user->remove();
+                return redirecting()->to("users");
+            }
+            return redirecting()->to("users");
+        }
 
         public function insert() {            
         }
