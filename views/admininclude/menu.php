@@ -117,34 +117,34 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="tables.html"><i class="fa fa-table fa-fw"></i> Products</a>
+                                <a href="<?php url("products"); ?>"><i class="fa fa-table fa-fw"></i> Products</a>
                             </li>
                             <li>
-                                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Purchases</a>
+                                <a href="<?php url("purchases"); ?>"><i class="fa fa-edit fa-fw"></i> Purchases</a>
                             </li>
                             <li>
-                                <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Sales</a>
+                                <a href="<?php url("sales"); ?>"><i class="fa fa-edit fa-fw"></i> Sales</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> Management<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="panels-wells.html">Users</a>
+                                        <a href="<?php url("users"); ?>">Users</a>
                                     </li>
                                     <li>
-                                        <a href="buttons.html">Privileges</a>
+                                        <a href="<?php url("privilegies"); ?>">Privileges</a>
                                     </li>
                                     <li>
-                                        <a href="notifications.html">Notifications</a>
+                                        <a href="<?php url("notifications"); ?>">Notifications</a>
                                     </li>
                                     <li>
-                                        <a href="typography.html">Typography</a>
+                                        <a href="<?php url("typography"); ?>">Typography</a>
                                     </li>
                                     <li>
-                                        <a href="icons.html"> Icons</a>
+                                        <a href="<?php url("icons"); ?>"> Icons</a>
                                     </li>
                                     <li>
-                                        <a href="grid.html">Grid</a>
+                                        <a href="<?php url("grid"); ?>">Grid</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
