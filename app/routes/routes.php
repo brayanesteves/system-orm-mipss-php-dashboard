@@ -14,6 +14,7 @@
         "/login"        => "AuthController",
         "/users"        => "UsersController",
         "/user"         => "UserController",
+        "/product"      => "ProductController",
         "/products"     => "ProductsController",
         "/salesinvoice" => "SalesInvoiceController",
         "/admin"        => "AdminController",

@@ -6,7 +6,7 @@
      * Time: 11:29 
      */
     use View\Views;
-    use App\model\Usr;
+    use App\model\Prdcts;
     use \libs\ORM\EtORM;
     class ProductController {
 
@@ -15,41 +15,38 @@
         }
         
         public function new() {
-            return Views::create("admin.user.add");
+            return Views::create("admin.product.add");
         }
         
         public function add() {
             try {
-                $user               = new Usr();
+                $product               = new Prdcts();
                 if(input("username")) {
-                    $user           = Usr::find(input("reference"));
+                    $product           = Usr::find(input("reference"));
                 }
-                $user->Usrnm        = input("username");
-                if(input("password")) {
-                    $user->Psswrd       = crypt(input("password"), '$2a$07$usesomesillystringforsalt$');
-                }
-                $user->Rfrnc_Prsn   = input("Rfrnc_Prsn");
-                $user->UsrTyp_Rfrnc = input("UsrTyp_Rfrnc");
+                $product->Nm        = input("Nm");                
+                $product->CncptDscrptn   = input("CncptDscrptn");
+                $product->Rfrnc_TypPrdct = input("Rfrnc_TypPrdct");
                 if(isset($_POST["Cndtn"])) {
-                    $user->Cndtn    = 1;
+                    $product->Cndtn    = 1;
                 } else {
-                    $user->Cndtn    = 0;
+                    $product->Cndtn    = 0;
                 }
                 if(isset($_POST["Rmvd"]) == "on") {
-                    $user->Rmvd        = 1;
+                    $product->Rmvd        = 1;
                 } else {
-                    $user->Rmvd        = 0;
+                    $product->Rmvd        = 0;
                 }
                 if(isset($_POST["Lckd"]) == "on") {
-                    $user->Lckd        = 1;
+                    $product->Lckd        = 1;
                 } else {
-                    $user->Lckd        = 0;
+                    $product->Lckd        = 0;
                 } 
-                $user->DtAdmssn     = Date("Y-m-d");
-                $user->ChckTm       = Date("H:i:s"); 
-                $user->save(); 
+                $product->DtAdmssn     = Date("Y-m-d");
+                $product->ChckTm       = Date("H:i:s"); 
+                $product->save(); 
                 
-                redirecting()->to("/users");
+                redirecting()->to("/products");
 
             } catch (Exception $e) {
                 echo $e->getMessage();
@@ -59,58 +56,38 @@
         /**
          * Method to edit record
          * Example: 
-         * http://localhost/system-orm-mipss-php-dashboard/user/edit/{$Reference}
+         * http://localhost/system-orm-mipss-php-dashboard/product/edit/{$Reference}
          * @param {int} $Reference
          * @return redirect
          */
         public function edit($Reference) {
-            $user = Usr::find($Reference);
-            if(count($user)) {
-                return Views::create("admin.user.add", array("user" => $user));
+            $product = Prdcts::find($Reference);
+            if(count($product)) {
+                return Views::create("admin.product.add", array("product" => $product));
             }
-            return redirecting()->to("user");
+            return redirecting()->to("product");
         }
 
         public function delete($Reference) {
-            $user = Usr::find($Reference);
-            if(count($user)) {
-                $user->delete();
-                return redirecting()->to("users");
+            $product = Prdcts::find($Reference);
+            if(count($product)) {
+                $product->delete();
+                return redirecting()->to("products");
             }
-            return redirecting()->to("users");
+            return redirecting()->to("products");
         }
 
         public function remove($Reference) {
-            $user = Usr::find($Reference);
-            var_dump($user);
-            if(count($user)) {
-                $user->remove();
-                return redirecting()->to("users");
+            $product = Prdcts::find($Reference);
+            var_dump($product);
+            if(count($product)) {
+                $product->remove();
+                return redirecting()->to("products");
             }
-            return redirecting()->to("users");
+            return redirecting()->to("products");
         }
 
         public function insert() {            
-        }
-
-        public function test_add() {   
-            $user               = new Usr();
-            $user->Usrnm        = "Brayan_Test3";
-            $user->Psswrd       = crypt("1234", '$2a$07$usesomesillystringforsalt$');
-            $user->Rfrnc_Prsn   = 1;
-            $user->UsrTyp_Rfrnc = 1;
-            $user->Cndtn        = 1;
-            $user->Rmvd         = 0;
-            $user->Lckd         = 0;
-            $user->DtAdmssn     = "0001-01-01";
-            $user->ChckTm       = "00:00:00";
-
-            //echo $user->Usrnm;
-
-            $user->getTable();            
-            $user->save();
-            echo $user->Rfrnc;              
-        }
-     
+        }        
     }
 ?>

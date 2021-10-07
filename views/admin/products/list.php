@@ -35,7 +35,7 @@
                                 <td><?php echo $product->Nm; ?></td>
 
                                 <?php if(strlen($product->CncptDscrptn) > 4): ?>
-                                <td><b class="text-success">$product->CncptDscrptn</b>...</td>
+                                <td><b class="text-success"><?php echo $product->CncptDscrptn; ?></b>...</td>
                                 <?php else: ?>
                                 <td>-</td>
                                 <?php endif; ?>
@@ -45,23 +45,23 @@
                                 <td><?php echo $product->DtAdmssn; ?></td>
                                 <td><?php echo $product->ChckTm; ?></td>
                                 <td>
-                                    <a href="<?php url("user/edit/" . $product->Rfrnc); ?>" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="<?php url("product/edit/" . $product->Rfrnc); ?>" class="btn btn-primary btn-sm">Edit</a>
                                     <?php if($product->Cndtn == 1): ?>
-                                    <button href="<?php url("user/desactivate/" . $product->Rfrnc); ?>" class="btn btn-warning btn-sm">Desactivate</button>
+                                    <button href="<?php url("product/desactivate/" . $product->Rfrnc); ?>" class="btn btn-warning btn-sm">Desactivate</button>
                                     <?php else: ?>
-                                    <button href="<?php url("user/activate/" . $product->Rfrnc); ?>" class="btn btn-warning btn-sm">Activate</button>
+                                    <button href="<?php url("product/activate/" . $product->Rfrnc); ?>" class="btn btn-warning btn-sm">Activate</button>
                                     <?php endif; ?>
                                     
                                     <?php if($product->Rmvd == 1): ?>
-                                    <button onclick="<?php url("user/recover/" . $product->Rfrnc); ?>" class="btn btn-success btn-sm">Recover</button>
+                                    <button onclick="<?php url("product/recover/" . $product->Rfrnc); ?>" class="btn btn-success btn-sm">Recover</button>
                                     <?php else: ?>
-                                    <button onclick="remove('<?php url("user/remove/" . $product->Rfrnc); ?>')" class="btn btn-danger btn-sm">Remove</button>
+                                    <button onclick="remove('<?php url('product/remove/' . $product->Rfrnc); ?>')" class="btn btn-danger btn-sm">Remove</button>
                                     <?php endif; ?>
                                     
                                     <?php if($product->Lckd == 1): ?>
-                                    <button href="<?php url("user/unlock/" . $product->Rfrnc); ?>" class="btn btn-success btn-sm">Unlock</button>
+                                    <button href="<?php url("product/unlock/" . $product->Rfrnc); ?>" class="btn btn-success btn-sm">Unlock</button>
                                     <?php else: ?>
-                                    <button href="<?php url("user/locked/" . $product->Rfrnc); ?>" class="btn btn-warning btn-sm">Locked</button>
+                                    <button href="<?php url("product/locked/" . $product->Rfrnc); ?>" class="btn btn-warning btn-sm">Locked</button>
                                     <?php endif; ?>   
                                     
                                 </td>
