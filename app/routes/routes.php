@@ -10,13 +10,15 @@
      */
     $route = new Route();
     $route->controllers(array(
-        "/"             => "MainController",
-        "/login"        => "AuthController",
-        "/users"        => "UsersController",
-        "/user"         => "UserController",
-        "/product"      => "ProductController",
-        "/products"     => "ProductsController",
-        "/salesinvoice" => "SalesInvoiceController",
-        "/admin"        => "AdminController",
+        "/"                 => "MainController",
+        "/login"            => "AuthController",
+        "/users"            => "UsersController",
+        "/user"             => "UserController",
+        "/product"          => "ProductController",
+        "/products"         => "ProductsController",
+        "/purchases"        => "PurchasesController",
+        "/purchaseinvoices" => "PurchaseInvoicesController",
+        "/salesinvoice"     => "SalesInvoiceController",
+        "/admin"            => "AdminController",
     ));
 ?>

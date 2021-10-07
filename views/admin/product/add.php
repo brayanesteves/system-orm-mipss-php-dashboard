@@ -37,7 +37,7 @@
 
                                         <div class="form-group">
                                             <label for="CncptDscrptn">Concept or Description</label>
-                                            <textarea type="text" name="CncptDscrptn" id="CncptDscrptn" class="form-control" value="<?php echo isset($product) ? $product->CncptDscrptn : ''; ?>" placeholder="Enter concept or description..."></textarea>
+                                            <textarea type="text" name="CncptDscrptn" id="CncptDscrptn" class="form-control" placeholder="Enter concept or description..."><?php echo isset($product) ? $product->CncptDscrptn : ''; ?></textarea>
                                         </div>
 
                                         <div class="form-group">
