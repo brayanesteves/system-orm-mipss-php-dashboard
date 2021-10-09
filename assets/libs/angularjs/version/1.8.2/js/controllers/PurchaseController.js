@@ -17,18 +17,32 @@ PurchaseApp.controller('PurchaseController', ['$scope', '$http', '$filter', func
         var position = $position;
         var data     = $filter("filter")($scope.products, {
             Rfrnc: $reference
-        })[0];
+        })[0]; 
         
-        $scope.data = {
-            Rfrnc: data.Rfrnc,
-            Nm: data.Nm,
-            CncptDscrptn: data.CncptDscrptn,
-            TypPrdct: data.TypPrdct,
-            Qntty: $("#Qntty-" + position).val(),
-            UntPrc_Prvdr: $("#UntPrc_Prvdr-" + position).val()
-        };
+        var add = true;
 
-        $scope.addData.push($scope.data);
+        /**
+         * If this is the first time a data is added
+         */
+        if($scope.addData.length == 0) {
+            $scope._addData(data, position);
+            add = false;
+        } else {
+            angular.forEach($scope.addData, function(value, key) {
+                /**
+                 * If the data that is being added exists
+                 */
+                if(value["Rfrnc"] == $reference) {
+                    value.Qntty        = parseInt(value.Qntty) + parseInt($("#Qntty-" + position).val());
+                    value.UntPrc_Prvdr = parseFloat(value.UntPrc_Prvdr) + parseFloat($("#UntPrc_Prvdr-" + position).val());
+                    add                = false;
+                }
+            });
+        }
+
+        if(add) {
+            $scope._addData(data, position);
+        }
 
         /**
          * Close Modal
@@ -36,7 +50,42 @@ PurchaseApp.controller('PurchaseController', ['$scope', '$http', '$filter', func
         $("#ProductsList").modal('hide');
     };
 
-    $scope._addData = function () {
+    $scope._addData = function (data_, position) {
+        $scope.data = {
+            Rfrnc: data_.Rfrnc,
+            Nm: data_.Nm,
+            CncptDscrptn: data_.CncptDscrptn,
+            TypPrdct: data_.TypPrdct,
+            Qntty: $("#Qntty-" + position).val(),
+            UntPrc_Prvdr: $("#UntPrc_Prvdr-" + position).val()
+        };
 
+        $scope.addData.push($scope.data);
+
+        $scope.getTotalQntty = function () {
+            var total = 0;
+            angular.forEach($scope.addData, function(value, key) {                
+                total = total + parseInt(value.Qntty);                   
+               
+            });
+
+            return total;
+        };
+
+        $scope.getTotalUntPrc_Prvdr = function () {
+            var total = 0;
+            angular.forEach($scope.addData, function(value, key) {                
+                total = total + parseFloat(value.UntPrc_Prvdr);                
+            });
+            return total;
+        };
+
+        $scope.getTotal = function () {
+            var total = 0;
+            angular.forEach($scope.addData, function(value, key) {                
+                total = total + parseInt(value.Qntty) * parseFloat(value.UntPrc_Prvdr);                
+            });
+            return total;
+        };
     };
 }]); 

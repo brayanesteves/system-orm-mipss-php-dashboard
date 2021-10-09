@@ -91,6 +91,7 @@
                                                     <th>Name</th>
                                                     <th>Quantity</th>
                                                     <th>Unite Price: Provider</th>
+                                                    <th>Subtotal</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
@@ -100,6 +101,15 @@
                                                     <td>{{ _product.Nm }}</td>
                                                     <td>{{ _product.Qntty }}</td>
                                                     <td>{{ _product.UntPrc_Prvdr }}</td>
+                                                    <td>{{ _product.Qntty * _product.UntPrc_Prvdr }}</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>{{ getTotalQntty() }}</th>
+                                                    <th>{{ getTotalUntPrc_Prvdr() }}</th>
+                                                    <th><span class="text-right">Total: </span>{{ getTotal() }}</th>
                                                 </tr>
                                             </tbody>
                                         </table>
