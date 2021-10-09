@@ -7,6 +7,7 @@
      */
     use View\Views;
     use App\model\PrchsInvcs;
+    use App\model\PrchsdPrdcts;
     use \libs\ORM\EtORM;
     class PurchaseInvoicesController {
         public function index() {
@@ -38,9 +39,25 @@
                 $purchaseinvoices->Lckd             = "0";
                 $purchaseinvoices->DtAdmssn         = Date("Y-m-d");
                 $purchaseinvoices->ChckTm           = Date("H:i:s"); 
-                $purchaseinvoices->save(); 
+                if($purchaseinvoices->save()) {
+                    $products = json_decode(input("products"));
+                    foreach($products as $product) {                        
+                        $purchasedproductos = new PrchsdPrdcts();
+                        $purchasedproductos->Rfrnc_Prsn      = input("Rfrnc_Prsn");
+                        $purchasedproductos->Rfrnc_Prdct     = $product->Rfrnc;
+                        $purchasedproductos->Rfrnc_PrchsInvc = $purchaseinvoices->Rfrnc;
+                        $purchasedproductos->Qntty           = $product->Qntty;
+                        $purchasedproductos->UntPrc_Prvdr    = $product->UntPrc_Prvdr;
+                        $purchasedproductos->Cndtn           = 1;
+                        $purchasedproductos->Rmvd            = 0;
+                        $purchasedproductos->Lckd            = 0;
+                        $purchasedproductos->DtAdmssn        = Date("Y-m-d");
+                        $purchasedproductos->ChckTm          = Date("H:i:s");
+                        $purchasedproductos->save();
+                    }
+                    redirecting()->to("/purchaseinvoices");
+                }                
                 redirecting()->to("/purchaseinvoices");
-
             } catch (Exception $e) {
                 echo $e->getMessage();
             }

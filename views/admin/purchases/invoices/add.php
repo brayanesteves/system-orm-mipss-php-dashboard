@@ -117,7 +117,10 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="col-md-12">
+                                <input type="hidden" name="products" id="products" value="{{ addData }}">
+                                <button type="submit" class="btn btn-success">Add purchase</button>
+                            </div>
                         </form>
                     </div>
                     <!-- .CONTENT -->
