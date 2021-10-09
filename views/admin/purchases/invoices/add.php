@@ -87,14 +87,20 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
+                                                    <th>#</th>
                                                     <th>Name</th>
-                                                    <th>Qntty</th>
+                                                    <th>Quantity</th>
                                                     <th>Unite Price: Provider</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                <tr ng-repeat="_product in addData">
+                                                    <td>{{ $index + 1 }}</td>
+                                                    <td>{{ _product.Nm }}</td>
+                                                    <td>{{ _product.Qntty }}</td>
+                                                    <td>{{ _product.UntPrc_Prvdr }}</td>
+                                                </tr>
                                             </tbody>
                                         </table>
 
@@ -125,6 +131,8 @@
                                         <th>Name</th>
                                         <th>Concept or Description</th>
                                         <th>Type Product</th>
+                                        <th>Quantity</th>
+                                        <th>Unite Price: Provider</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -133,8 +141,11 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ product.Nm }}</td>
                                         <td>{{ product.CncptDscrptn }}</td>
+                                        <td>{{ product.TypPrdct }}</td>
+                                        <td><input type="text" name="Qntty-{{ $index }}" id="Qntty-{{ $index }}" class="form-control"></td>
+                                        <td><input type="text" name="UntPrc_Prvdr-{{ $index }}" id="UntPrc_Prvdr-{{ $index }}" class="form-control"></td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-primary">Add</button>
+                                            <button ng-click="selectedData($index, product.Rfrnc)" type="button" class="btn btn-sm btn-primary">Add</button>
                                         </td>
                                     </tr>
                                 </tbody>
