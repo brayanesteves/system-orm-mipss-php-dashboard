@@ -87,6 +87,14 @@
             return redirecting()->to("products");
         }
 
+        /**
+         * JSON
+         * http://localhost/system-orm-mipss-php-dashboard/product/all
+         */
+        public function all() {
+            $products = Prdcts::all();
+            echo json_response($products);
+        }
         public function insert() {            
         }        
     }

@@ -7,7 +7,7 @@
         <?php if(isset($_SESSION['Usrnm'])): ?>
         <div id="wrapper">
             <?php include(VIEWS_ROUTE . "admininclude/menu.php"); ?>
-            <div id="page-wrapper">
+            <div id="page-wrapper" ng-app="PurchaseApp" ng-controller="PurchaseController">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
@@ -18,6 +18,7 @@
                     <!-- CONTENT -->
                     <div class="row">
                         <form action="<?php url("purchaseinvoices/add"); ?>" method="POST" role="form">
+                            <input type="hidden" id="urlmain" name="urlmain" value="<?php url(""); ?>">
                             <div class="col-md-6"> 
 
                                 <div class="panel panel-default">

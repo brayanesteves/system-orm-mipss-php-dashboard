@@ -14,7 +14,17 @@
             $products = Prdcts::all();
             return Views::create("admin.products.list", array("products" => $products));        
         }
-        public function search() {            
+
+        /**
+         * JSON
+         * http://localhost/system-orm-mipss-php-dashboard/products/all
+         */
+        public function all() {
+            $products = Prdcts::all();
+            echo json_response($products);
+        }
+
+        public function search() { 
         }
         public function insert() {            
         }  
