@@ -13,6 +13,10 @@ PurchaseApp.controller('PurchaseController', ['$scope', '$http', '$filter', func
         });
     };
 
+    $scope.RemoveData = function(index, data) {
+        $scope.addData.splice(index, 1);
+    }
+
     $scope.selectedData = function ($position, $reference) {
         var position = $position;
         var data     = $filter("filter")($scope.products, {

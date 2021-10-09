@@ -92,7 +92,7 @@
                                                     <th>Quantity</th>
                                                     <th>Unite Price: Provider</th>
                                                     <th>Subtotal</th>
-                                                    <th>Actions</th>
+                                                    <th><i class="fa fa-cog"></i> Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -102,7 +102,9 @@
                                                     <td>{{ _product.Qntty }}</td>
                                                     <td>{{ _product.UntPrc_Prvdr }}</td>
                                                     <td>{{ _product.Qntty * _product.UntPrc_Prvdr }}</td>
-                                                    <td></td>
+                                                    <td>
+                                                        <a href="javascript:;" class="text-danger" ng-click="RemoveData($index ,_product)"><i class="fa fa-times"></i>Remove</a>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <th></th>
