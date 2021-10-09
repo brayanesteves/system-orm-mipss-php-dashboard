@@ -83,7 +83,7 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-body">
-                                        <button type="button" class="btn btn-sm btn-primary">Add purchased products</button>
+                                        <button ng-click="loadData()" data-toggle="modal" data-target="#ProductsList"type="button" class="btn btn-sm btn-primary">Add purchased products</button>
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -107,6 +107,45 @@
                     <!-- .CONTENT -->
                 </div>
                 <!-- /.container-fluid -->
+                <!-- Modal -->
+                <div class="modal fade" id="ProductsList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Products List</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" name="" id="" class="form-control" placeholder="Search..." ng-model="search">
+                            <hr>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Concept or Description</th>
+                                        <th>Type Product</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="product in products | filter:search">
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ product.Nm }}</td>
+                                        <td>{{ product.CncptDscrptn }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-primary">Add</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- /#page-wrapper -->
         </div>
