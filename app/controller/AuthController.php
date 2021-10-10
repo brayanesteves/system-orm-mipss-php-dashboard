@@ -82,7 +82,7 @@
                     redirecting()->to("/login")->withMessage(array("status" => "false", "message" => "Incorrect username/password"));
                 }
             } else {
-                echo "¡ERROR!";
+                redirecting()->to("/login")->withMessage(array("status" => "false", "message" => "Incorrect username/password"));
             }     
         }
 

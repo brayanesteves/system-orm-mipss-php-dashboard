@@ -17,7 +17,11 @@
      */
     function assets($assets) {
         $urlmain = trim(str_replace("index.php", "", $_SERVER['PHP_SELF']), "/");
-        echo "/" . $urlmain . "/assets/" . $assets;
+        if(strlen($urlmain)){
+            echo "/" . $urlmain . "/assets/" . $assets;
+        } else {
+            echo $urlmain . "/assets/" . $assets;
+        }
     }
     /**
      * Function that allows redirection to another part 
@@ -33,8 +37,12 @@
      * $route: Route to where to go
      */
     function url($route) {
-        $urlmain = str_replace("index.php", "", $_SERVER['PHP_SELF']);
-        echo "/" . trim($urlmain, "/") . "/" . $route;
+        if(trim($_SERVER['PHP_SELF'], "/") == "index.php") {
+            echo "/" . $route;
+        } else {
+            $urlmain = str_replace("index.php", "", $_SERVER['PHP_SELF']);
+            echo "/" . trim($urlmain, "/") . "/" . $route;
+        }
     }
 
     /**

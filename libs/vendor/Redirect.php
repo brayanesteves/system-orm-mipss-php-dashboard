@@ -42,8 +42,15 @@
          * $route: Route to where we want to go
          */
         private function redirect($route) {
-            $urlmain = str_replace("index.php", "", $_SERVER['PHP_SELF']);
-            header("location:/" . trim($urlmain, "/") . "/" . trim($route, "/"));
+            $url = "";
+            if(trim($_SERVER['PHP_SELF'], "/") == "index.php") {
+                $url = $route;
+            } else {
+                $urlmain = str_replace("index.php", "", $_SERVER['PHP_SELF']);
+                $url     = "/" . trim($urlmain, "/") . '/' . $route;
+            }
+            //header("location:/" . trim($urlmain, "/") . "/" . trim($route, "/"));
+            header("location:" . $url);
         }
 
     }
