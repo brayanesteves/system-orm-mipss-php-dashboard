@@ -6,6 +6,7 @@
      * Time: 11:29 
      */
     use View\Views;
+    use App\model\Usr;
     use App\model\Prdcts;
     use \libs\ORM\EtORM;
     class ProductController {
@@ -20,37 +21,30 @@
         
         public function add() {
             try {
-                $product               = new Prdcts();
-                if(input("username")) {
-                    $product           = Usr::find(input("reference"));
-                }
-                $product->Nm        = input("Nm");                
-                $product->CncptDscrptn   = input("CncptDscrptn");
-                $product->Rfrnc_TypPrdct = input("Rfrnc_TypPrdct");
-                if(isset($_POST["Cndtn"])) {
-                    $product->Cndtn    = 1;
-                } else {
-                    $product->Cndtn    = 0;
-                }
-                if(isset($_POST["Rmvd"]) == "on") {
-                    $product->Rmvd        = 1;
-                } else {
-                    $product->Rmvd        = 0;
-                }
-                if(isset($_POST["Lckd"]) == "on") {
-                    $product->Lckd        = 1;
-                } else {
-                    $product->Lckd        = 0;
-                } 
-                $product->DtAdmssn     = Date("Y-m-d");
-                $product->ChckTm       = Date("H:i:s"); 
-                $product->save(); 
-                
-                redirecting()->to("/products");
+                if(!empty($_POST)) {
+                    $product               = new Prdcts();
+                    if(isset($_POST["Rfrnc"])) {
+                        $product           = Prdcts::find(input("Rfrnc"));
+                    }
+                    $product->Nm             = input("Nm");                
+                    $product->CncptDscrptn   = input("CncptDscrptn");
+                    $product->Rfrnc_TypPrdct = input("Rfrnc_TypPrdct");
+                    $product->Cndtn          = 1;
+                    $product->Rmvd           = 0;  
+                    $product->Lckd           = 0;                   
+                    $product->DtAdmssn       = Date("Y-m-d");
+                    $product->ChckTm         = Date("H:i:s"); 
+                    if($product->save()) {
+                        redirecting()->to("/products");
+                    } else {
+                        echo "ERROR";
+                    }
+                }                
 
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
+            redirecting()->to("/products");
         }
 
         /**

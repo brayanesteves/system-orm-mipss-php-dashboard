@@ -64,7 +64,19 @@
     /**
      * Function that allows us to recover an 'input'
      */
-    function input($name) {
+    function input($field) {
+        $_field = $_POST[$field];
+
+        $_field = trim($field);
+        $_field = stripcslashes($field);
+        $_field = htmlspecialchars($field);
+
+        return $_field;
+    }
+    /**
+     * @depracated
+     */
+    function _input($name) {
         $response = new \Library\help\Request();
         return $response->input($name);
     }

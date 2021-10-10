@@ -28,7 +28,7 @@
                                     <form action="<?php url("product/add"); ?>" method="POST" role="form">
                                         <legend>Product data</legend>
                                         <?php if(isset($product)): ?>
-                                            <input type="hidden" name="Rfrnc" value="<?php echo $product->Rfrnc; ?>">
+                                            <input type="hidden" name="Rfrnc" id="Rfrnc" value="<?php echo $product->Rfrnc; ?>">
                                         <?php endif; ?>
                                         <div class="form-group">
                                             <label for="Nm">Name</label>
@@ -50,26 +50,6 @@
                                                 <option value="4">4</option>
                                                 <option value="5">5</option>
                                             </select>
-                                        </div>
-
-                                        
-
-                                        <div class="form-group">
-                                            <label class="checkbox-inline">
-                                            <input type="checkbox" name="Cndtn" id="Cndtn" <?php echo $product->Cndtn == 1 ? 'checked' : ''; ?>> Condition                                            
-                                            </label>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="checkbox-inline">
-                                            <input type="checkbox" name="Rmvd" id="Rmvd" <?php echo $product->Rmvd == 1 ? 'checked' : ''; ?>> Removed                                            
-                                            </label>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="checkbox-inline">
-                                            <input type="checkbox" name="Lckd" id="Lckd" <?php echo $product->Lckd == 1 ? 'checked' : ''; ?>> Locked                                            
-                                            </label>
                                         </div>
 
                                         <button type="submit" class="btn btn-primary"><?php echo isset($product) ? 'Update' : 'Add'; ?></button>
